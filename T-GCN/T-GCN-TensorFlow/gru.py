@@ -66,11 +66,11 @@ class GRUCell(RNNCell):
         
         x = tf.reshape(x_h, shape=[-1, input_size])
 
-        scope = tf.get_variable_scope()
-        with tf.variable_scope(scope):
-            weights = tf.get_variable(
+        scope = tf.compat.v1.get_variable_scope()
+        with tf.compat.v1.variable_scope(scope):
+            weights = tf.compat.v1.get_variable(
                 'weights', [input_size, output_size], initializer=tf.contrib.layers.xavier_initializer())
-            biases = tf.get_variable(
+            biases = tf.compat.v1.get_variable(
                 "biases", [output_size], initializer=tf.constant_initializer(bias))
 
             x = tf.matmul(x, weights)  # (batch_size * self.num_nodes, output_size)          
